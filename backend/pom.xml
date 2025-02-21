@@ -13,7 +13,7 @@
         <module>domain</module>
         <module>web</module>
         <module>app</module>
-        <module>sql</module>
+        <module>database</module>
     </modules>
 
     <properties>
@@ -51,7 +51,7 @@
             </dependency>
             <dependency>
                 <groupId>co.digamma.netnote</groupId>
-                <artifactId>netnote-sql</artifactId>
+                <artifactId>netnote-database</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

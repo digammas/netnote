@@ -1,0 +1,12 @@
+services:
+  database:
+    image: postgres:16-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/.dbs/postgres/netnote:/var/lib/postgresql/data
+      - ./db-init.sql:/docker-entrypoint-initdb.d/netnote.sql
+    environment:
+      - POSTGRES_PASSWORD=sekret
+      - POSTGRES_USER=su
+      - POSTGRES_DB=netnote

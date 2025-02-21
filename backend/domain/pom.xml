@@ -11,6 +11,17 @@
 
     <artifactId>netnote-domain</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.inject</groupId>
+            <artifactId>jakarta.inject-api</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -23,8 +34,8 @@
                         </goals>
                         <configuration>
                             <excludes>
-                                <exclude>co/digamma/ca/tests/**</exclude>
-                                <exclude>co/digamma/ca/domain/internal/**</exclude>
+                                <exclude>co/digamma/netnote/tests/**</exclude>
+                                <exclude>co/digamma/netnote/domain/internal/**</exclude>
                             </excludes>
                         </configuration>
                     </execution>

@@ -1,0 +1,145 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20250217-1800-001-netnote-schema
+      author: Ahmad
+      rollback:
+        - sql:
+            sql: "DROP SCHEMA IF EXISTS netnote CASCADE;"
+      changes:
+        - sql:
+            sql: "CREATE SCHEMA IF NOT EXISTS netnote;"
+  - changeSet:
+      id: 20250217-1800-001-netnote-tables
+      author: Ahmad
+      changes:
+        - createTable:
+            tableName: domain
+            schemaName: netnote
+            ifNotExists: true
+            columns:
+              - column:
+                  name: id
+                  type: char(36)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: timestamp
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: url
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+        - createTable:
+            tableName: link
+            schemaName: netnote
+            ifNotExists: true
+            columns:
+              - column:
+                  name: id
+                  type: char(36)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: timestamp
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: url
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: domain_id
+                  type: char(36)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: link__domain_fk
+                    referencedTableSchemaName: netnote
+                    referencedTableName: domain
+                    referencedColumnNames: id
+        - createTable:
+            tableName: note
+            schemaName: netnote
+            ifNotExists: true
+            columns:
+              - column:
+                  name: id
+                  type: char(36)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: timestamp
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: average
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: support
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: domain_id
+                  type: char(36)
+                  constraints:
+                    nullable: true
+                    unique: true
+                    foreignKeyName: note__domain_fk
+                    referencedTableSchemaName: netnote
+                    referencedTableName: domain
+                    referencedColumnNames: id
+              - column:
+                  name: link_id
+                  type: char(36)
+                  constraints:
+                    nullable: true
+                    unique: true
+                    foreignKeyName: note_link_fk
+                    referencedTableSchemaName: netnote
+                    referencedTableName: link
+                    referencedColumnNames: id
+        - createTable:
+            tableName: rating
+            schemaName: netnote
+            ifNotExists: true
+            columns:
+              - column:
+                  name: id
+                  type: char(36)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: timestamp
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: note
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: comment
+                  type: text
+                  constraints:
+                    nullable: true
+              - column:
+                  name: link_id
+                  type: char(36)
+                  constraints:
+                    nullable: true
+                    unique: true
+                    foreignKeyName: note_link_fk
+                    referencedTableSchemaName: netnote
+                    referencedTableName: link
+                    referencedColumnNames: id

@@ -15,12 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>co.digamma.netnote</groupId>
-            <artifactId>netnote-domain</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
@@ -31,7 +26,7 @@
 
         <dependency>
             <groupId>co.digamma.netnote</groupId>
-            <artifactId>netnote-sql</artifactId>
+            <artifactId>netnote-database</artifactId>
             <scope>runtime</scope>
         </dependency>
     </dependencies>

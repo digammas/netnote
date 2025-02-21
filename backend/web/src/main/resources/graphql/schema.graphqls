@@ -1,0 +1,44 @@
+input RatingInput {
+    url: String!
+    note: Int!
+    comment: String
+}
+
+type RatingOutput {
+    id: ID!
+    note: Int!
+    comment: String
+}
+
+type NoteOutput {
+    average: Float
+    support: Int!
+}
+
+type PageInfo {
+    hasPreviousPage: Boolean!
+    hasNextPage: Boolean!
+    startCursor: String
+    endCursor: String
+}
+
+type RatingConnection {
+    edges: [RatingEdge]!
+    pageInfo: PageInfo!
+}
+
+type RatingEdge {
+    node: RatingOutput!
+    cursor: String
+}
+
+type Query {
+    domainNote(url: String!): NoteOutput
+    linkNote(url: String!): NoteOutput
+    domainRatings(url: String!, after: Int, first: Int): RatingConnection
+    linkRatings(url: String!, after: Int, first: Int): RatingConnection
+}
+
+type Mutation {
+    rate(input: RatingInput!): Boolean
+}

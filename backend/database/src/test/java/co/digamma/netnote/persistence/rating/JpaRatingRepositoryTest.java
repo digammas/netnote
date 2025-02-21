@@ -22,33 +22,6 @@ public class JpaRatingRepositoryTest extends BaseTestSuite {
     @Autowired
     private RatingRepository sut;
 
-    @Autowired
-    private RatedLinkRepository linkRepository;
-
-    @Autowired
-    private RatedDomainRepository domainRepository;
-
-    private RatedDomain givenDomain() {
-        String url = "https://www.%s.com".formatted(
-                UUID.randomUUID()
-        );
-        RatedDomain domain = domainRepository.create(url);
-        return domainRepository.write(domain);
-    }
-
-    private RatedLink givenLinkForDomain(RatedDomain domain) {
-        String url = "%s/%s".formatted(
-                domain.getUrl(),
-                UUID.randomUUID()
-        );
-        RatedLink link = linkRepository.create(url, domain);
-        return linkRepository.write(link);
-    }
-
-    private RatedLink givenLink() {
-        return givenLinkForDomain(givenDomain());
-    }
-
     @Test
     public void create_should_create() {
         RatedLink link = givenLink();

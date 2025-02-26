@@ -35,8 +35,8 @@ type RatingEdge {
 type Query {
     domainNote(url: String!): NoteOutput
     linkNote(url: String!): NoteOutput
-    domainRatings(url: String!, after: Int, first: Int): RatingConnection
-    linkRatings(url: String!, after: Int, first: Int): RatingConnection
+    domainRatings(url: String!, after: String, first: Int): RatingConnection
+    linkRatings(url: String!, after: String, first: Int): RatingConnection
 }
 
 type Mutation {
